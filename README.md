@@ -47,13 +47,32 @@ php artisan migrate --seed
 php artisan serve
 ```
 
-SuperAdmin login:
+## Logging in and creating Admin / Member users
+
+Only the SuperAdmin exists after seeding. Admin and Member accounts are created
+through invitations, there are no ready-made credentials for them.
+
+SuperAdmin login (created by the seeder):
 
 - Email: superadmin@gmail.com
 - Password: Pass@123
 
-Invitation emails are not really sent. They are saved in `storage/logs/laravel.log`,
-and the invitation link is also shown on the screen after you send an invite.
+Invitation emails are not really sent (the mail driver is `log`). After you send an invite,
+the invitation link is shown on the screen. It is also saved in `storage/logs/laravel.log`.
+
+1. Log in as SuperAdmin and go to **Invite New Client**. Enter a company name and the
+   Admin's email, then click **Send Invitation**.
+2. Copy the invitation link shown on the screen and open it in a private/incognito window
+   (so the SuperAdmin session stays logged in).
+3. On the "Accept your invitation" page enter a name and password, then click
+   **Create account**. This creates the company's Admin, so you now know that Admin's
+   login (the invited email and the password you just set).
+4. Log in as that Admin and go to **Invite New Team Member**. Enter a name, email and
+   choose the role (Admin or Member), then click **Send Invitation**.
+5. Open the new invitation link in a private window, set a name and password, and log in
+   as that Admin or Member.
+
+Admin and Member can create short URLs. The SuperAdmin cannot, but can see all of them.
 
 ## Running the tests
 
